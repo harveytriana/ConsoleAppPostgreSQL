@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 /*
-dotnet ef dbcontext scaffold "Host=my_host;Database=my_db;Username=my_user;Password=my_pw" Npgsql.EntityFrameworkCore.PostgreSQL
+ * DJANGO STRUCTURE 
+ * dotnet ef dbcontext scaffold "Host=my_host;Database=my_db;Username=my_user;Password=my_pw" Npgsql.EntityFrameworkCore.PostgreSQL
  */
-
 namespace EscuelaPG
 {
     class Program
