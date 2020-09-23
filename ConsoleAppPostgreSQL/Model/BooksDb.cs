@@ -24,7 +24,8 @@ namespace ConsoleAppPostgreSQL.Model
 
         // SQLite
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-                 => options.UseSqlite("Data Source=BooksDb.db");
-
+        {
+            options.UseSqlite(@"Data Source=C:\_study\ConsoleAppPostgreSQL\ConsoleAppPostgreSQL\BooksDb.db");
+        }
     }
 }

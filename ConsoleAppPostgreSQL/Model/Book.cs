@@ -11,7 +11,7 @@ namespace ConsoleAppPostgreSQL.Model
 
         public override string ToString()
         {
-            return $"{Title}, {Author.Name()} ";
+            return $"{Title}, {Author?.Name()} ";
         }
     }
 
@@ -20,7 +20,7 @@ namespace ConsoleAppPostgreSQL.Model
         public int AuthorId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public ICollection<Book> Books { get; set; }
 
         public string Name() => $"{FirstName} {LastName}";
     }

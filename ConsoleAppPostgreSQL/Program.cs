@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 /*
 Entity Framework Core tools reference - Package Manager Console in Visual Studio
