@@ -39,24 +39,26 @@ namespace ConsoleAppPostgreSQL
                 if (db.Books.Any() == false) {
 
                     var authors = new List<Author>
-                {
-                    new Author{ AuthorId = 1,  FirstName = "John", LastName = "Lennon" },
-                    new Author{ AuthorId = 2,  FirstName = "Frank", LastName = "Zappa" }
-                };
+                    {
+                        new Author{ AuthorId = 1,  FirstName = "John", LastName = "Lennon" },
+                        new Author{ AuthorId = 2,  FirstName = "Frank", LastName = "Zappa" }
+                    };
 
                     var books = new List<Book>()
-                {
-                    new Book{ AuthorId = 1,  Title = "In His On Right" },
-                    new Book{ AuthorId = 1,  Title = "Yer Blues" },
-                    new Book{ AuthorId = 2,  Title = "Led World" },
-                };
+                    {
+                        new Book{ AuthorId = 1,  Title = "In His On Right" },
+                        new Book{ AuthorId = 1,  Title = "Yer Blues" },
+                        new Book{ AuthorId = 2,  Title = "Led World" },
+                    };
+                    db.Authors.AddRange(authors);
+                    db.Books.AddRange(books);
 
                     db.SaveChanges();
                 }
                 foreach (var book in db.Books.ToList())
                     Console.WriteLine(book);
             }
-            catch(Exception exception) {
+            catch (Exception exception) {
                 Console.WriteLine($"Exception: {exception.Message}");
             }
         }

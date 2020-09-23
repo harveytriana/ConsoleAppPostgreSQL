@@ -14,17 +14,17 @@ namespace ConsoleAppPostgreSQL.Model
         //}
 
         // postgreSql
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured) {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
-            }
-        }
-            
-    
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured) {
+        //        optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
+        //    }
+        //}
+
+
         // SQLite
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //         => options.UseSqlite("Data Source=BooksDb.db");
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+                 => options.UseSqlite("Data Source=BooksDb.db");
+
     }
 }
