@@ -15,7 +15,12 @@ namespace ConsoleAppPostgreSQL.Model
 
         // postgreSql
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
+        {
+            if (!optionsBuilder.IsConfigured) {
+                optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
+            }
+        }
+            
     
         // SQLite
         //protected override void OnConfiguring(DbContextOptionsBuilder options)

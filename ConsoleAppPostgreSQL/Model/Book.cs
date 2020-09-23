@@ -10,6 +10,11 @@ namespace ConsoleAppPostgreSQL.Model
         public string Title { get; set; }
         public int AuthorId { get; set; }
         public Author Author { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title}, {Author.Name()} ";
+        }
     }
 
     public class Author
@@ -18,5 +23,7 @@ namespace ConsoleAppPostgreSQL.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Book> Books { get; set; } = new List<Book>();
+
+        public string Name() => $"{FirstName} {LastName}";
     }
 }
