@@ -14,7 +14,7 @@ namespace BooksClient
     /// <summary>
     /// RestClient. Encapsulates and simplifies the REST code
     /// </summary>
-    public sealed class RestClient<T> : IDisposable
+    public sealed class RestClient: IDisposable
     {
         readonly HttpClient httpClient;
 
@@ -30,12 +30,12 @@ namespace BooksClient
             Console.WriteLine($"Api Root: {apiRoute}");
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAll<T>(string route)
         {
             try {
-                var result = await httpClient.GetStringAsync("");
+                var json = await httpClient.GetStringAsync(route);
 
-                return JsonConvert.DeserializeObject<List<T>>(result);
+                return JsonConvert.DeserializeObject<List<T>>(json);
             }
             catch (Exception exception) {
                 Console.WriteLine($"ERROR. GetAll(): {exception.Message}");
