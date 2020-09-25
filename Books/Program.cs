@@ -22,16 +22,16 @@ namespace Books
             try {
                 if (db.BooksBook.Any() == false) {
                     Console.WriteLine("\nInserting...");
-                    var authors = new List<BooksAuthor>
+                    var authors = new List<Author>
                     {
-                        new BooksAuthor{ Id = 1,  FirstName = "John", LastName = "Lennon" },
-                        new BooksAuthor{ Id = 2,  FirstName = "Frank", LastName = "Zappa" }
+                        new Author{ Id = 1,  FirstName = "John", LastName = "Lennon" },
+                        new Author{ Id = 2,  FirstName = "Frank", LastName = "Zappa" }
                     };
-                    var books = new List<BooksBook>()
+                    var books = new List<Book>()
                     {
-                        new BooksBook{ Id = 1, AuthorId = 1,  Title = "In His On Right" },
-                        new BooksBook{ Id = 2, AuthorId = 1,  Title = "Yer Blues" },
-                        new BooksBook{ Id = 3, AuthorId = 2,  Title = "Led World" },
+                        new Book{ Id = 1, AuthorId = 1,  Title = "In His On Right" },
+                        new Book{ Id = 2, AuthorId = 1,  Title = "Yer Blues" },
+                        new Book{ Id = 3, AuthorId = 2,  Title = "Led World" },
                     };
 
                     db.BooksAuthor.AddRange(authors);
@@ -41,7 +41,7 @@ namespace Books
                 }
                 Console.WriteLine("\nReading...");
                 foreach (var book in db.BooksBook.ToList())
-                    Console.WriteLine(book);
+                    Console.WriteLine($"{book} Date: {book.Date:dd-MM-yyyy}");
             }
             catch (Exception exception) {
                 Console.WriteLine($"Exception: {exception.Message}");

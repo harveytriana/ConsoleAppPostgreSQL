@@ -23,8 +23,8 @@ namespace Books
         public virtual DbSet<AuthUser> AuthUser { get; set; }
         public virtual DbSet<AuthUserGroups> AuthUserGroups { get; set; }
         public virtual DbSet<AuthUserUserPermissions> AuthUserUserPermissions { get; set; }
-        public virtual DbSet<BooksAuthor> BooksAuthor { get; set; }
-        public virtual DbSet<BooksBook> BooksBook { get; set; }
+        public virtual DbSet<Author> BooksAuthor { get; set; }
+        public virtual DbSet<Book> BooksBook { get; set; }
         public virtual DbSet<DjangoAdminLog> DjangoAdminLog { get; set; }
         public virtual DbSet<DjangoContentType> DjangoContentType { get; set; }
         public virtual DbSet<DjangoMigrations> DjangoMigrations { get; set; }
@@ -255,7 +255,7 @@ namespace Books
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
-            modelBuilder.Entity<BooksAuthor>(entity =>
+            modelBuilder.Entity<Author>(entity =>
             {
                 entity.ToTable("Books_author");
 
@@ -272,7 +272,7 @@ namespace Books
                     .HasColumnType("varchar(50)");
             });
 
-            modelBuilder.Entity<BooksBook>(entity =>
+            modelBuilder.Entity<Book>(entity =>
             {
                 entity.ToTable("Books_book");
 
