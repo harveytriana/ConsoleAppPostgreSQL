@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Books
+// it must be a Standard library
+// keep herr by example
+//
+namespace BooksClient
 {
     public partial class Book
     {
@@ -9,9 +12,11 @@ namespace Books
         public string Title { get; set; }
         // *
         public DateTime Date { get; set; }
+
         // ForeignKey
-        public long AuthorId { get; set; }
-        public virtual Author Author { get; set; }
+        //public long AuthorId { get; set; }
+        //public virtual Author Author { get; set; }
+        public int Author { get; set; }
 
         public override string ToString() => $"{Title}, {Author}";
     }
@@ -19,16 +24,11 @@ namespace Books
 
     public partial class Author
     {
-        public Author()
-        {
-            Books = new HashSet<Book>();
-        }
-
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
-        public virtual ICollection<Book> Books { get; set; }
+        // no in api
+        // public virtual ICollection<Book> Books { get; set; }
 
         public string FullName() => $"{FirstName} {LastName}";
 

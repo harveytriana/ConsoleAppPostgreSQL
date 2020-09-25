@@ -294,7 +294,7 @@ namespace Books
                     .HasColumnType("varchar(500)");
 
                 entity.HasOne(d => d.Author)
-                    .WithMany(p => p.BooksBook)
+                    .WithMany(p => p.Books)
                     .HasForeignKey(d => d.AuthorId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
