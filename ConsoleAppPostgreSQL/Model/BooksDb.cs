@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ConsoleAppPostgreSQL.Model
 {
@@ -8,10 +7,7 @@ namespace ConsoleAppPostgreSQL.Model
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
 
-        public BooksDb()
-        {
-           
-        }
+        public BooksDb() { }
 
         // Sql Server
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -23,6 +19,7 @@ namespace ConsoleAppPostgreSQL.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured) {
+                optionsBuilder.UseLazyLoadingProxies();
                 optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
             }
         }

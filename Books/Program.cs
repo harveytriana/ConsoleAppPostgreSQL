@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 /*
- * Reverse Enginer from django database
+ * Reverse Engineering with ef CLI
  * dotnet ef dbcontext scaffold "Data Source=Books.sqlite3" Microsoft.EntityFrameworkCore.Sqlite
 */
 
@@ -12,7 +12,7 @@ namespace Books
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Reverse Engineering for django Database");
             InsertBooks();
         }
 

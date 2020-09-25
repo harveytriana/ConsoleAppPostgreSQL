@@ -6,6 +6,8 @@ instalar Microsoft.EntityFrameworkCore.Proxies
 Lazy Loading With EF Core
 https://dotnetcoretutorials.com/2019/09/07/lazy-loading-with-ef-core/
 
+If you turn on Lazy Loading, all navigation properties (e.g. Non Primitives), are required to be virtual. 
+
 ---------------------------------------------------------------------------------------
 using System;
 using System.Linq;
