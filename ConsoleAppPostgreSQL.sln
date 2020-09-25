@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppPostgreSQL", "ConsoleAppPostgreSQL\ConsoleAppPostgreSQL.csproj", "{D5BF9BDF-2D77-4FC3-8E9C-4E7AD1A27AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscuelaPG", "EscuelaPG\EscuelaPG.csproj", "{FD6FB265-BA5C-44B0-A651-13438327DDFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books", "Books\Books.csproj", "{EFE4750C-4049-46A4-863A-27E845589779}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A812B3BA-0C67-4FA7-8636-36C2B1ADC17F}"
+	ProjectSection(SolutionItems) = preProject
+		notes.txt = notes.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +22,10 @@ Global
 		{D5BF9BDF-2D77-4FC3-8E9C-4E7AD1A27AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BF9BDF-2D77-4FC3-8E9C-4E7AD1A27AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BF9BDF-2D77-4FC3-8E9C-4E7AD1A27AAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD6FB265-BA5C-44B0-A651-13438327DDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD6FB265-BA5C-44B0-A651-13438327DDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD6FB265-BA5C-44B0-A651-13438327DDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD6FB265-BA5C-44B0-A651-13438327DDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFE4750C-4049-46A4-863A-27E845589779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE4750C-4049-46A4-863A-27E845589779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE4750C-4049-46A4-863A-27E845589779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE4750C-4049-46A4-863A-27E845589779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

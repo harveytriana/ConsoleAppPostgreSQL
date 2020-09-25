@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class AuthPermission
     {
@@ -11,10 +11,10 @@ namespace EscuelaPG
             AuthUserUserPermissions = new HashSet<AuthUserUserPermissions>();
         }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int ContentTypeId { get; set; }
+        public long Id { get; set; }
+        public long ContentTypeId { get; set; }
         public string Codename { get; set; }
+        public string Name { get; set; }
 
         public virtual DjangoContentType ContentType { get; set; }
         public virtual ICollection<AuthGroupPermissions> AuthGroupPermissions { get; set; }

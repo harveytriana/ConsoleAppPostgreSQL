@@ -1,4 +1,13 @@
-﻿using System;
+
+
+Importante. Para que lea los objetos derivados, i.g. Bokk y su Author, es necesario
+instalar Microsoft.EntityFrameworkCore.Proxies
+
+Lazy Loading With EF Core
+https://dotnetcoretutorials.com/2019/09/07/lazy-loading-with-ef-core/
+
+---------------------------------------------------------------------------------------
+using System;
 using System.Linq;
 /*
  * DJANGO STRUCTURE 

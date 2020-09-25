@@ -21,6 +21,12 @@ https://docs.microsoft.com/es-es/ef/core/miscellaneous/cli/dotnet
 https://docs.microsoft.com/en-us/ef/core/get-started/?tabs=netcore-cli
 dotnet tool install --global dotnet-ef
 dotnet*ef has to run as Administrator
+
+RESUME
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet ef migrations add InitialCreate
+dotnet ef database update
 */
 
 namespace ConsoleAppPostgreSQL
@@ -36,27 +42,27 @@ namespace ConsoleAppPostgreSQL
         private static void InsertBooks()
         {
             using var db = new BooksDb();
-
             try {
                 if (db.Books.Any() == false) {
-
+                    Console.WriteLine("\nInserting...");
                     var authors = new List<Author>
                     {
                         new Author{ AuthorId = 1,  FirstName = "John", LastName = "Lennon" },
                         new Author{ AuthorId = 2,  FirstName = "Frank", LastName = "Zappa" }
                     };
-
                     var books = new List<Book>()
                     {
-                        new Book{ AuthorId = 1,  Title = "In His On Right" },
-                        new Book{ AuthorId = 1,  Title = "Yer Blues" },
-                        new Book{ AuthorId = 2,  Title = "Led World" },
-                    };
+                        new Book{ BookId = 1, AuthorId = 1,  Title = "In His On Right" },
+                        new Book{ BookId = 2, AuthorId = 1,  Title = "Yer Blues" },
+                        new Book{ BookId = 3, AuthorId = 2,  Title = "Led World" },
+                    }; 
+                    
                     db.Authors.AddRange(authors);
                     db.Books.AddRange(books);
 
                     db.SaveChanges();
                 }
+                Console.WriteLine("\nReading...");
                 foreach (var book in db.Books.ToList())
                     Console.WriteLine(book);
             }

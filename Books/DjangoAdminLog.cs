@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class DjangoAdminLog
     {
-        public int Id { get; set; }
-        public DateTime ActionTime { get; set; }
+        public long Id { get; set; }
+        public byte[] ActionTime { get; set; }
         public string ObjectId { get; set; }
         public string ObjectRepr { get; set; }
-        public short ActionFlag { get; set; }
         public string ChangeMessage { get; set; }
-        public int? ContentTypeId { get; set; }
-        public int UserId { get; set; }
+        public long? ContentTypeId { get; set; }
+        public long UserId { get; set; }
+        public long ActionFlag { get; set; }
 
         public virtual DjangoContentType ContentType { get; set; }
         public virtual AuthUser User { get; set; }

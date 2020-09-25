@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class DjangoContentType
     {
@@ -11,7 +11,7 @@ namespace EscuelaPG
             DjangoAdminLog = new HashSet<DjangoAdminLog>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string AppLabel { get; set; }
         public string Model { get; set; }
 

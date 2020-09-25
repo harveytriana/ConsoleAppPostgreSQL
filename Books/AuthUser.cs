@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class AuthUser
     {
@@ -12,17 +12,17 @@ namespace EscuelaPG
             DjangoAdminLog = new HashSet<DjangoAdminLog>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Password { get; set; }
-        public DateTime? LastLogin { get; set; }
-        public bool IsSuperuser { get; set; }
+        public byte[] LastLogin { get; set; }
+        public byte[] IsSuperuser { get; set; }
         public string Username { get; set; }
-        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public bool IsStaff { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime DateJoined { get; set; }
+        public byte[] IsStaff { get; set; }
+        public byte[] IsActive { get; set; }
+        public byte[] DateJoined { get; set; }
+        public string FirstName { get; set; }
 
         public virtual ICollection<AuthUserGroups> AuthUserGroups { get; set; }
         public virtual ICollection<AuthUserUserPermissions> AuthUserUserPermissions { get; set; }

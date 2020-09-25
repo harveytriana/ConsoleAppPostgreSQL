@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class AuthGroup
     {
@@ -11,7 +11,7 @@ namespace EscuelaPG
             AuthUserGroups = new HashSet<AuthUserGroups>();
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<AuthGroupPermissions> AuthGroupPermissions { get; set; }

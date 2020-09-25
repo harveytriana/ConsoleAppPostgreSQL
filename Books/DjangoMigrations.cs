@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class DjangoMigrations
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string App { get; set; }
         public string Name { get; set; }
-        public DateTime Applied { get; set; }
+        public byte[] Applied { get; set; }
     }
 }

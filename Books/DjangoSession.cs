@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscuelaPG
+namespace Books
 {
     public partial class DjangoSession
     {
         public string SessionKey { get; set; }
         public string SessionData { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public byte[] ExpireDate { get; set; }
     }
 }
