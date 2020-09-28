@@ -43,7 +43,6 @@ namespace BooksClient
             return null;
         }
 
-
         public void Dispose()
         {
             httpClient.Dispose();

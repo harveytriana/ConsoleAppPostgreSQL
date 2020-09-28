@@ -1,0 +1,39 @@
+﻿using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+static async Task Test()
+{
+    var client = new HttpClient();
+    // Call asynchronous network methods in a try/catch block to handle exceptions.
+    try {
+        var response = await client.GetAsync("http://127.0.0.1:5004/api/booktitles");
+        response.EnsureSuccessStatusCode();
+        var responseBody = await response.Content.ReadAsStringAsync();
+        // Above three lines can be replaced with new helper method below
+        // string responseBody = await client.GetStringAsync(uri);
+
+        Console.WriteLine(responseBody);
+    }
+    catch (HttpRequestException e) {
+        Console.WriteLine("\nException Caught!");
+        Console.WriteLine("Message :{0} ", e.Message);
+    }
+
+           
+}
+static async Task Test2()
+{
+    var client = new HttpClient();
+    // Call asynchronous network methods in a try/catch block to handle exceptions.
+    try {
+        var response = await client.GetStringAsync("http://127.0.0.1:5004/api/booktitles");
+
+
+        Console.WriteLine(response);
+    }
+    catch (HttpRequestException e) {
+        Console.WriteLine("\nException Caught!");
+        Console.WriteLine("Message :{0} ", e.Message);
+    }
+}

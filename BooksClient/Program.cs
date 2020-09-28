@@ -6,7 +6,7 @@ namespace BooksClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("API TEST");
+            Console.WriteLine("Django REST API");
 
             var rc = new RestClient("http://127.0.0.1:5004");
 
@@ -22,6 +22,13 @@ namespace BooksClient
             if (authors != null)
                 foreach (var author in authors)
                     Console.WriteLine($"{author.Id}: {author}");
+            else Console.WriteLine("Authors is null");
+
+            Console.WriteLine("\nBook Titles");
+            var list = rc.GetAll<string>("/api/booktitles").Result;
+            if (list != null)
+                foreach (var s in list)
+                    Console.WriteLine(s);
             else Console.WriteLine("Authors is null");
         }
     }
