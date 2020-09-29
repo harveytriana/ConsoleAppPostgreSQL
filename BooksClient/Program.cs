@@ -13,12 +13,12 @@ namespace BooksClient
 
             var rc = new RestClient("http://127.0.0.1:5004");
 
-            Console.WriteLine("\nBOOKS");
-            var books = rc.GetAll<Book>("/Books").Result;
-            if (books != null)
-                foreach (var book in books)
-                    Console.WriteLine($"{book}, {book.Date:dd-MM-yyyy}");
-            else Console.WriteLine("Books is null");
+            //Console.WriteLine("\nBOOKS");
+            //var books = rc.GetAll<Book>("/Books").Result;
+            //if (books != null)
+            //    foreach (var book in books)
+            //        Console.WriteLine($"{book}, {book.Date:dd-MM-yyyy}");
+            //else Console.WriteLine("Books is null");
 
             //Console.WriteLine("\nAUTHORS");
             //var authors = rc.GetAll<Author>("/Authors").Result;
@@ -38,11 +38,22 @@ namespace BooksClient
 
             //Console.WriteLine(rc.Get3().Result);
 
-            Console.WriteLine("\nGet(pk)");
-            Console.WriteLine(rc.Get<Book>("/Books", 2).Result);
+            //Console.WriteLine("\nGet(pk)");
+            //Console.WriteLine(rc.Get<Book>("/Books", 2).Result);
+
+            // POST
+            Console.WriteLine("\nPost");
+            var i = new Book
+            {
+                Author = 5,
+                Date = new DateTime(1980, 1, 12),
+                Title = "Calculus I"
+            };
+            var n = rc.Post("/Books/", i).Result;
+            Console.WriteLine($"{n}, id = {n?.Id}");
 
         }
 
-        
+
     }
 }
