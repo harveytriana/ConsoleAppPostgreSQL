@@ -45,7 +45,7 @@ namespace BooksClient
             return null;
         }
 
-        public async Task<T> Get<T>(string route, int pk) where T : class
+        public async Task<T> Get<T>(string route, int pk) 
         {
             try {
                 var json = await httpClient.GetStringAsync($"{route}/{pk}/");
@@ -57,7 +57,7 @@ namespace BooksClient
             return default;
         }
 
-        public async Task<T> Post<T>(string route, T item) where T : class
+        public async Task<T> Post<T>(string route, T item) 
         {
             /*
             Important note about django API
@@ -81,12 +81,12 @@ namespace BooksClient
                 } else {
                     Console.WriteLine($"Return: {js}");
                 }
-                return null;
+                return default;
             }
             catch (Exception exception) {
                 Console.WriteLine($"ERROR. Post: {exception.Message}");
             }
-            return null;
+            return default;
         }
 
 
