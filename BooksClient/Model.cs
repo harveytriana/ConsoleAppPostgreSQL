@@ -28,8 +28,6 @@ namespace BooksClient
         // no in api
         // public virtual ICollection<Book> Books { get; set; }
 
-        public string FullName() => $"{FirstName} {LastName}";
-
-        public override string ToString() => FullName();
+        public override string ToString() => $"{FirstName} {LastName}";
     }
 }

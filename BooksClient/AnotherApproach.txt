@@ -29,7 +29,6 @@ static async Task Test2()
     try {
         var response = await client.GetStringAsync("http://127.0.0.1:5004/api/booktitles");
 
-
         Console.WriteLine(response);
     }
     catch (HttpRequestException e) {

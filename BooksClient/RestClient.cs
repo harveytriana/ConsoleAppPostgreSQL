@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace BooksClient
 {
     /// <summary>
     /// RestClient. Encapsulates and simplifies the REST code
     /// </summary>
-    public sealed class RestClient: IDisposable
+    public sealed class RestClient : IDisposable
     {
         readonly HttpClient httpClient;
 
@@ -43,6 +44,20 @@ namespace BooksClient
             return null;
         }
 
+        public async Task<T> Get<T>(string route, int pk) where T : class
+        {
+            try {
+                var json = await httpClient.GetStringAsync($"{route}/{pk}/");
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception exception) {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine($"ERROR. Get(): {exception.Message}");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            return default;
+        }
+        
         public void Dispose()
         {
             httpClient.Dispose();
