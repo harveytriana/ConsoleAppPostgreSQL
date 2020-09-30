@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Books
+namespace College
 {
-    public partial class BooksContext : DbContext
+    public partial class CollegeContext : DbContext
     {
-        const string DB = @"Data Source=C:\_Study\ConsoleAppPostgreSQL\Books\Books.sqlite3";
-
-        public BooksContext()
+        public CollegeContext()
         {
         }
 
-        public BooksContext(DbContextOptions<BooksContext> options)
+        public CollegeContext(DbContextOptions<CollegeContext> options)
             : base(options)
         {
         }
@@ -23,8 +21,9 @@ namespace Books
         public virtual DbSet<AuthUser> AuthUser { get; set; }
         public virtual DbSet<AuthUserGroups> AuthUserGroups { get; set; }
         public virtual DbSet<AuthUserUserPermissions> AuthUserUserPermissions { get; set; }
-        public virtual DbSet<Author> BooksAuthor { get; set; }
-        public virtual DbSet<Book> BooksBook { get; set; }
+        public virtual DbSet<AcademicCourse> CollegeAcademiccourse { get; set; }
+        public virtual DbSet<Enrollment> CollegeEnrollment { get; set; }
+        public virtual DbSet<Student> CollegeStudent { get; set; }
         public virtual DbSet<DjangoAdminLog> DjangoAdminLog { get; set; }
         public virtual DbSet<DjangoContentType> DjangoContentType { get; set; }
         public virtual DbSet<DjangoMigrations> DjangoMigrations { get; set; }
@@ -34,12 +33,13 @@ namespace Books
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLazyLoadingProxies();
-
-                // To protect potentially sensitive information in your connection string, 
-                // you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 
-                // for guidance on storing connection strings.
-                optionsBuilder.UseSqlite(DB);
+                //! Search NOTE-1 
+                // optionsBuilder.UseLazyLoadingProxies();
+                //
+                // To protect potentially sensitive information in your connection string, you should move
+                // it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance 
+                // on storing connection strings.
+                optionsBuilder.UseSqlite("Data Source=C:\\_study\\Python\\LABS-django\\college.sqlite3");
             }
         }
 
@@ -255,48 +255,98 @@ namespace Books
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
-            modelBuilder.Entity<Author>(entity =>
+            modelBuilder.Entity<AcademicCourse>(entity =>
             {
-                entity.ToTable("Books_author");
+                entity.ToTable("college_academiccourse");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .ValueGeneratedNever();
+
+                entity.Property(e => e.Credits)
+                    .HasColumnName("credits")
+                    .HasColumnType("smallint unsigned");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.State)
+                    .IsRequired()
+                    .HasColumnName("state")
+                    .HasColumnType("bool");
+            });
+
+            modelBuilder.Entity<Enrollment>(entity =>
+            {
+                entity.ToTable("college_enrollment");
+
+                entity.HasIndex(e => e.AcademicCourseId)
+                    .HasName("college_enrollment_academic_course_id_035c3073");
+
+                entity.HasIndex(e => e.SudentId)
+                    .HasName("college_enrollment_sudent_id_d37be8da");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.AcademicCourseId).HasColumnName("academic_course_id");
+
+                entity.Property(e => e.EnrollmentDate)
+                    .IsRequired()
+                    .HasColumnName("enrollment_date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.SudentId).HasColumnName("sudent_id");
+
+                entity.HasOne(d => d.AcademicCourse)
+                    .WithMany(p => p.CollegeEnrollment)
+                    .HasForeignKey(d => d.AcademicCourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Sudent)
+                    .WithMany(p => p.CollegeEnrollment)
+                    .HasForeignKey(d => d.SudentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Student>(entity =>
+            {
+                entity.ToTable("college_student");
+
+                entity.HasIndex(e => e.Identifier)
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Birthdate)
+                    .IsRequired()
+                    .HasColumnName("birthdate")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
+                    .HasColumnName("first_name")
                     .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasColumnName("gender")
+                    .HasColumnType("varchar(1)");
+
+                entity.Property(e => e.Identifier)
+                    .IsRequired()
+                    .HasColumnName("identifier")
+                    .HasColumnType("varchar(8)");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
+                    .HasColumnName("last_name")
                     .HasColumnType("varchar(50)");
-            });
-
-            modelBuilder.Entity<Book>(entity =>
-            {
-                entity.ToTable("Books_book");
-
-                entity.HasIndex(e => e.AuthorId)
-                    .HasName("Books_book_Author_id_d998c01f");
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.AuthorId).HasColumnName("Author_id");
-
-                entity.Property(e => e.Date)
-                    .IsRequired()
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasColumnType("varchar(500)");
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.Books)
-                    .HasForeignKey(d => d.AuthorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<DjangoAdminLog>(entity =>

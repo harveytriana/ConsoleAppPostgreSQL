@@ -16,19 +16,20 @@ namespace ConsoleAppPostgreSQL.Model
         //}
 
         // postgreSql
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured) {
-                optionsBuilder.UseLazyLoadingProxies();
-                optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured) {
+        //        optionsBuilder.UseLazyLoadingProxies();
+        //        optionsBuilder.UseNpgsql("Host=localhost;Database=BooksDb;Username=postgres;Password=Pragma$2020");
+        //    }
+        //}
 
         // SQLite
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //{
-        //    options.UseSqlite(@"Data Source=C:\_study\ConsoleAppPostgreSQL\ConsoleAppPostgreSQL\BooksDb.db");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseLazyLoadingProxies();
+            options.UseSqlite(@"Data Source=C:\_study\Python\ConsoleAppPostgreSQL\ConsoleAppPostgreSQL\Books.db");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

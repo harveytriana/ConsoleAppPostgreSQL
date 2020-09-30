@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 // it must be a Standard library
-// keep herr by example
+// keep here by example
 //
 namespace BooksClient
 {

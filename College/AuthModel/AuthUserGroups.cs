@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Books
+namespace College
 {
-    public partial class AuthUserUserPermissions
+    public partial class AuthUserGroups
     {
         public long Id { get; set; }
         public long UserId { get; set; }
-        public long PermissionId { get; set; }
+        public long GroupId { get; set; }
 
-        public virtual AuthPermission Permission { get; set; }
+        public virtual AuthGroup Group { get; set; }
         public virtual AuthUser User { get; set; }
     }
 }

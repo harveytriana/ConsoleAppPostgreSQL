@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Books
+namespace College
 {
     public partial class AuthGroup
     {

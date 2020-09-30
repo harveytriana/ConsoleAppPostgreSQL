@@ -35,7 +35,9 @@ namespace ConsoleAppPostgreSQL
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Npgsql.EntityFrameworkCore.PostgreSQL!");
+            Console.WriteLine("BOOKS COLLECTION");
+            Console.WriteLine("Practice on EF and Npgsql.EntityFrameworkCore.PostgreSQL");
+            Console.WriteLine("No related a Django database\n");
             InsertBooks();
         }
 
