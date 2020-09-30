@@ -1,4 +1,5 @@
 ﻿using ConsoleAppPostgreSQL.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+
+NOTE
+It was rwmoved * for use Include
+<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+
 */
 
 namespace ConsoleAppPostgreSQL
@@ -38,10 +44,10 @@ namespace ConsoleAppPostgreSQL
             Console.WriteLine("BOOKS COLLECTION");
             Console.WriteLine("Practice on EF and Npgsql.EntityFrameworkCore.PostgreSQL");
             Console.WriteLine("No related a Django database\n");
-            InsertBooks();
+            Seedooks();
         }
 
-        private static void InsertBooks()
+        private static void Seedooks()
         {
             using var db = new BooksDb();
             try {
@@ -58,19 +64,20 @@ namespace ConsoleAppPostgreSQL
                         new Book{ BookId = 2, AuthorId = 1,  Title = "Yer Blues" },
                         new Book{ BookId = 3, AuthorId = 2,  Title = "Led World" },
                     }; 
-                    
                     db.Authors.AddRange(authors);
                     db.Books.AddRange(books);
-
                     db.SaveChanges();
                 }
-                Console.WriteLine("\nReading...");
-                foreach (var book in db.Books.ToList())
-                    Console.WriteLine(book);
+               
             }
             catch (Exception exception) {
                 Console.WriteLine($"Exception: {exception.Message}");
+                return;
             }
+
+            Console.WriteLine("\nREADING");
+            foreach (var book in db.Books.Include(x => x.Author).ToList())
+                Console.WriteLine(book);
         }
     }
 }

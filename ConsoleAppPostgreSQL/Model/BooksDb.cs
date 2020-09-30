@@ -27,7 +27,7 @@ namespace ConsoleAppPostgreSQL.Model
         // SQLite
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseLazyLoadingProxies();
+            //options.UseLazyLoadingProxies();
             options.UseSqlite(@"Data Source=C:\_study\Python\ConsoleAppPostgreSQL\ConsoleAppPostgreSQL\Books.db");
         }
 
