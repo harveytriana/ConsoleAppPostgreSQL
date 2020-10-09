@@ -8,57 +8,65 @@ namespace CollegeClient
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Django REST API");
+            Console.WriteLine("Client of Django REST API");
 
-            rc = new RestClient("http://127.0.0.1:5000");
+            rc = new RestClient("http://127.0.0.1:5000/");
 
-            GetRandomBook();
+            // GetRandomBook();
 
-            //Console.WriteLine("\nBOOKS");
-            //var books = rc.GetAll<Book>("/books").Result;
-            //if (books != null)
-            //    foreach (var book in books)
-            //        Console.WriteLine($"{book}");
-            //else Console.WriteLine("Books is null");
+            // GetTitles();
 
-            //Console.WriteLine("\nAUTHORS");
-            //var authors = rc.GetAll<Author>("/Authors").Result;
-            //if (authors != null)
-            //    foreach (var author in authors)
-            //        Console.WriteLine($"{author.Id}: {author}");
-            //else Console.WriteLine("Authors is null");
+            // GetBook();
 
-            //Console.WriteLine("\nBook Titles");
-            //var list = rc.GetAll<string>("/api/booktitles").Result;
-            //if (list != null)
-            //    foreach (var s in list)
-            //        Console.WriteLine(s);
-            //else Console.WriteLine("Authors is null");
+            PostBook();
 
-            //Console.WriteLine(rc.Get2<Book>().Result);
+        }
 
-            //Console.WriteLine(rc.Get3().Result);
+        private static void PostBook()
+        {
+            Console.WriteLine("\nPOST BOOK");
+            var book = new Book
+            {
+                Author = "John Lennon",
+                ISBN = "0-684-86807-5",
+                ImageLink = "https://bit.ly/2SIQALg",
+                Title = "In his On Right",
+                Language = "English",
+                Link = "https://bit.ly/3nzBjuf",
+                Pages = 200,
+                Year = 1964
+            };
+            var n = rc.Post("api/books/", book).Result;
+            Console.WriteLine($"{n}, id = {n?.Id}");
+        }
 
-            //Console.WriteLine("\nGet(pk)");
-            //Console.WriteLine(rc.Get<Book>("/Books", 2).Result);
+        // not use 'college' due to the api routed as ViewSet
+        private static void GetBook()
+        {
+            Console.WriteLine("\nBOOK 7");
+            var book = rc.Get<Book>("api/books", 7).Result;
+            if (book != null)
+                Console.WriteLine($"{book}");
+            else
+                Console.WriteLine("Return null.");
+        }
 
-            // POST
-            //Console.WriteLine("\nPost");
-            //var i = new Book
-            //{
-            //    Author = 5,
-            //    Date = new DateTime(1980, 1, 12),
-            //    Title = "Calculus II"
-            //};
-            //var n = rc.Post("/Books/", i).Result;
-            //Console.WriteLine($"{n}, id = {n?.Id}");
-
+        // note the use generic of GetAll
+        private static void GetTitles()
+        {
+            Console.WriteLine("\nBook Titles");
+            var list = rc.GetAll<string>("college/api/booktitles").Result;
+            if (list != null)
+                foreach (var s in list)
+                    Console.WriteLine(s);
+            else 
+                Console.WriteLine("return null.");
         }
 
         private static void GetRandomBook()
         {
             Console.WriteLine("\nRANDOM BOOK");
-            var randomBook = rc.GetSomething<Book>("/college/api/something").Result;
+            var randomBook = rc.GetRandomObject<Book>("college/api/something").Result;
             if (randomBook != null)
                 Console.WriteLine($"{randomBook}");
             else

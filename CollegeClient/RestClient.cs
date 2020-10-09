@@ -35,7 +35,6 @@ namespace CollegeClient
         {
             try {
                 var json = await httpClient.GetStringAsync(route);
-
                 return JsonConvert.DeserializeObject<List<T>>(json);
             }
             catch (Exception exception) {
@@ -69,6 +68,8 @@ namespace CollegeClient
             REST_FRAMEWORK = {
                 "DATE_INPUT_FORMATS": ["%Y-%m-%d",'%Y-%m-%dT%H:%M:%S'],
             }
+
+            ** this sample has not date field **
             */
             try {
                 var serialized = new JsonContent<T>(item);
@@ -122,7 +123,7 @@ namespace CollegeClient
             return false;
         }
 
-        public async Task<T> GetSomething<T>(string route)
+        public async Task<T> GetRandomObject<T>(string route)
         {
             try {
                 var json = await httpClient.GetStringAsync(route);
@@ -138,12 +139,6 @@ namespace CollegeClient
         public void Dispose()
         {
             httpClient.Dispose();
-        }
-
-        private string AddSlah(string route)
-        {
-            if (route.EndsWith("/")) return route;
-            return route + "/";
         }
     }
 
