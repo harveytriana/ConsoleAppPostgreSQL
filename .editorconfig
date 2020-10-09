@@ -2,3 +2,6 @@
 
 # Default severity for analyzer diagnostics with category 'Design'
 dotnet_analyzer_diagnostic.category-Design.severity = silent
+
+# IDE0040: Add accessibility modifiers
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:none
