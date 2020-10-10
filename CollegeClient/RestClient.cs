@@ -73,52 +73,51 @@ namespace CollegeClient
             */
             try {
                 var serialized = new JsonContent<T>(item);
-
+                // post it
                 var response = await httpClient.PostAsync(route, serialized);
-                var js = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == HttpStatusCode.Created) {
+                    var js = await response.Content.ReadAsStringAsync();
                     return JsonConvert.DeserializeObject<T>(js);
                 } else {
-                    Console.WriteLine($"Return: {js}");
+                    Console.WriteLine($"Create fail: {response.StatusCode}");
                 }
                 return default;
             }
             catch (Exception exception) {
-                Console.WriteLine($"ERROR. Post: {exception.Message}");
+                Console.WriteLine($"ERROR. {exception.Message}");
             }
             return default;
         }
 
-        public async Task<T> Put<T>(string route, T item)
+        public async Task<bool> Put<T>(string route, T item, int pk)
         {
             try {
                 var serialized = new JsonContent<T>(item);
-
-                var response = await httpClient.PutAsync(route, serialized);
-                var js = await response.Content.ReadAsStringAsync();
-                if (response.StatusCode == HttpStatusCode.Accepted) {
-                    return JsonConvert.DeserializeObject<T>(js);
+                var response = await httpClient.PutAsync($"{route}/{pk}/", serialized);
+                if (response.StatusCode == HttpStatusCode.OK) {
+                    return true;
                 } else {
-                    Console.WriteLine($"Return: {js}");
+                    Console.WriteLine($"Status: {response.StatusCode}");
                 }
-                return default;
             }
             catch (Exception exception) {
-                Console.WriteLine($"ERROR. Post: {exception.Message}");
+                Console.WriteLine($"ERROR: {exception.Message}");
             }
-            return default;
+            return false;
         }
 
-        public async Task<bool> Delete<T>(string route, int pk)
+        public async Task<bool> Delete(string route, int pk)
         {
             try {
-                var response = await httpClient.DeleteAsync($"{route}/{pk}/");
-                if (response.StatusCode == HttpStatusCode.Accepted) {
+                var response = await httpClient.DeleteAsync($"{route}/{pk}");
+                if (response.StatusCode == HttpStatusCode.NoContent) {
                     return true;
+                } else {
+                    Console.WriteLine($"Status: {response.StatusCode}");
                 }
             }
             catch (Exception exception) {
-                Console.WriteLine($"ERROR. Get(): {exception.Message}");
+                Console.WriteLine($"ERROR: {exception.Message}");
             }
             return false;
         }

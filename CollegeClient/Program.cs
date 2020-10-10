@@ -4,25 +4,36 @@ namespace CollegeClient
 {
     class Program
     {
-        static RestClient rc;
+        static RestClient _restClient;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Client of Django REST API");
+            Console.WriteLine("Client of Django REST API\n");
 
-            rc = new RestClient("http://127.0.0.1:5000/");
+            _restClient = new RestClient("http://127.0.0.1:5000/");
 
-            // GetRandomBook();
+            GetRandomBook();
 
             // GetTitles();
 
             // GetBook();
 
-            PostBook();
+            // PostBook();
 
+            // PutBook();
+
+            // DeleteBook();
         }
 
-        private static void PostBook()
+        private static void DeleteBook()
+        {
+            Console.WriteLine("DELETE BOOK 101");
+            var deleted = _restClient.Delete("api/books", 101).Result;
+
+            Console.WriteLine($"Deleted: {deleted}");
+        }
+
+        private static void CreateBook()
         {
             Console.WriteLine("\nPOST BOOK");
             var book = new Book
@@ -36,42 +47,67 @@ namespace CollegeClient
                 Pages = 200,
                 Year = 1964
             };
-            var n = rc.Post("api/books/", book).Result;
-            Console.WriteLine($"{n}, id = {n?.Id}");
+            var n = _restClient.Post("api/books/", book).Result;
+            if (n != null) {
+                Console.WriteLine($"Created, id = {n.Id}");
+            }
+        }
+
+        private static void EditBook()
+        {
+            Console.WriteLine("PUT BOOK");
+            // already exists
+            var id = 102;
+            var book = new Book
+            {
+                // Id = 102,
+                Author = "Hunter Davis",
+                Year = 2012,
+                ISBN = "0-684-86807-7",
+                Language = "English",
+                Pages = 123,
+                Title = "The John Lennon Letters",
+                ImageLink = "https://bit.ly/3ntrmhU",
+                Link = "http://www.beatlesradio.com/book-review-the-john-lennon-letters-by-hunter-davies",
+            };
+            var updated = _restClient.Put("api/books", book, id).Result;
+
+            Console.WriteLine($"Updated {id}: {updated}");
         }
 
         // not use 'college' due to the api routed as ViewSet
         private static void GetBook()
         {
-            Console.WriteLine("\nBOOK 7");
-            var book = rc.Get<Book>("api/books", 7).Result;
+            Console.WriteLine("GET BOOK");
+            var id = 7;
+            var book = _restClient.Get<Book>("api/books", id).Result;
             if (book != null)
                 Console.WriteLine($"{book}");
             else
-                Console.WriteLine("Return null.");
+                Console.WriteLine($"Book {id} does not exist.");
         }
 
-        // note the use generic of GetAll
+        // note the use generic of GetAll, and use college in route
         private static void GetTitles()
         {
-            Console.WriteLine("\nBook Titles");
-            var list = rc.GetAll<string>("college/api/booktitles").Result;
+            Console.WriteLine("BOOK TITLES");
+            var list = _restClient.GetAll<string>("college/api/booktitles").Result;
             if (list != null)
                 foreach (var s in list)
                     Console.WriteLine(s);
             else 
-                Console.WriteLine("return null.");
+                Console.WriteLine("None.");
         }
 
+        // note that use college in route
         private static void GetRandomBook()
         {
-            Console.WriteLine("\nRANDOM BOOK");
-            var randomBook = rc.GetRandomObject<Book>("college/api/something").Result;
+            Console.WriteLine("RANDOM BOOK");
+            var randomBook = _restClient.GetRandomObject<Book>("college/api/something").Result;
             if (randomBook != null)
-                Console.WriteLine($"{randomBook}");
+                Console.WriteLine($"{randomBook.Id}; {randomBook}");
             else
                 Console.WriteLine("Return null.");
-
         }
     }
 }
