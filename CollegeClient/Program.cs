@@ -23,6 +23,9 @@ namespace CollegeClient
             // PutBook();
 
             // DeleteBook();
+
+            //! important
+            _restClient.Dispose();
         }
 
         private static void DeleteBook()

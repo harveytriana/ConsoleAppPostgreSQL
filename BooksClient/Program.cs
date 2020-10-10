@@ -42,16 +42,17 @@ namespace BooksClient
             //Console.WriteLine(rc.Get<Book>("/Books", 2).Result);
 
             // POST
-            Console.WriteLine("\nPost");
-            var i = new Book
-            {
-                Author = 5,
-                Date = new DateTime(1980, 1, 12),
-                Title = "Calculus II"
-            };
-            var n = rc.Post("/Books/", i).Result;
-            Console.WriteLine($"{n}, id = {n?.Id}");
+            //Console.WriteLine("\nPost");
+            //var i = new Book
+            //{
+            //    Author = 5,
+            //    Date = new DateTime(1980, 1, 12),
+            //    Title = "Calculus II"
+            //};
+            //var n = rc.Post("/Books/", i).Result;
+            //Console.WriteLine($"{n}, id = {n?.Id}");
 
+            rc.Dispose();
         }
 
 
