@@ -116,3 +116,6 @@ REM
 json_dict = response.json()
 The json string is:
 json = response.text()
+
+REM
+Comparisons to singletons like None should always be done with is or is not, never the equality operators.

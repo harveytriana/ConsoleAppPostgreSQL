@@ -40,3 +40,28 @@ if __name__ == "__main__":
     p = RestClient('http://127.0.0.1:5000/')
     print('GET')
     p.sample_get('college/api/something')
+
+
+VERY NICE
+\          SORRY            /
+    \                         /
+    \    This page does     /
+    ]   not exist yet.    [    ,'|
+    ]                     [   /  |
+    ]___               ___[ ,'   |
+    ]  ]\             /[  [ |:   |
+    ]  ] \           / [  [ |:   |
+    ]  ]  ]         [  [  [ |:   |
+    ]  ]  ]__     __[  [  [ |:   |
+    ]  ]  ] ]\ _ /[ [  [  [ |:   |
+    ]  ]  ] ] (#) [ [  [  [ :===='
+    ]  ]  ]_].nHn.[_[  [  [
+    ]  ]  ]  HHHHH. [  [  [
+    ]  ] /   `HH("N  \ [  [
+    ]__]/     HHH  "  \[__[
+    ]         NNN         [
+    ]         N/"         [
+    ]         N H         [
+    /          N            \
+    /           q,            \
+/                           \
