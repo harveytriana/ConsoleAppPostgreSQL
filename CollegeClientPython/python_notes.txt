@@ -103,10 +103,16 @@ ctrl+shift+p > Preferences: Configure Language Specific Settings > Python
 Run Server from console (outside vscode)
 ----------------------------------------
 > C:\_Study\Python\LABS_django\env\Scripts\activate
-(ecd nv)> cd ..
-(ecd nv)> cd ..
+(ecd nv)> cd C:\_Study\Python\LABS_django
 (ecd nv)> py manage.py runserver 5000
 http://127.0.0.1:5000/
 Do not close the console
 
 tarea: GET / 9 y ver si el link es texto normal
+--
+
+REM
+.json() returns a python dictionary,
+json_dict = response.json()
+The json string is:
+json = response.text()

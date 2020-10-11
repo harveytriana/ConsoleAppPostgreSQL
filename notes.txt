@@ -58,3 +58,5 @@ todos los me´todos probados GET, POST, PUT, DELETE.
 ConsoleAppPostgreSQL es un ejemplo de usar EF.
 --
 
+El folder C:\_Study\Python\ConsoleTests\CollegeClientPython es un ejemplo de cliente REST con python,
+el equivalente a CollegeCliente.RestClient

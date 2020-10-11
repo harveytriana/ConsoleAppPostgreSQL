@@ -8,7 +8,7 @@
             "name": "Python: Archivo actual",
             "type": "python",
             "request": "launch",
-            "program": "C:\\_Study\\Python\\CollegeClient\\main.py",
+            "program": "main.py",
             "console": "integratedTerminal"
         }
     ]
