@@ -28,6 +28,21 @@ class RestClient():
             print('...Something went wrong')
             return None
 
+    def post_object(self, route, object):
+        try:
+            url = self.api_root + route
+
+            dict = json.dumps(object.__dict__)
+
+            response = requests.post(url, data=dict)
+            # a jeson dictionary
+            json_dict = response.json()
+            # map to python object
+            return Book(**json_dict)
+        except:
+            print('...Something went wrong')
+            return None
+
     def get_random_object(self, route):
         try:
             url = self.api_root + route

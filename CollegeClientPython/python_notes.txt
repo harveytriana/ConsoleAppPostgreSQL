@@ -119,3 +119,6 @@ json = response.text()
 
 REM
 Comparisons to singletons like None should always be done with is or is not, never the equality operators.
+
+BookTitles
+http://127.0.0.1:5000/college/api/booktitles
