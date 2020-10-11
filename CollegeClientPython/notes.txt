@@ -1,0 +1,112 @@
+This is a laboratory project.
+
+GIT
+---
+echo "# LABS-django" >> README.md
+git init
+git add README.md
+
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/harveytriana/LABS-django.git
+git push -u origin master
+
+GIT FLOW
+--------
+UPDATE CLOUD
+git add -A
+git commit -m "commit name" 
+git push -u origin master
+
+UPDATE FROM CLOUD
+git pull
+
+super user
+=================
+sqlite | luis | Pragma$2020
+postgreeSql | admin | Pragma$2020
+
+postgreeSql
+===========
+Pragma$2020
+port 543
+Master Password: the same
+
+tutorial
+https://www.youtube.com/watch?v=jMPTz5NWIPY
+
+pip install psycopg2
+
+Maganmet Toos for PostgreeSql
+=============================
+pgAdmin
+http://127.0.0.1:51893/browser/
+http://127.0.0.1:51893/browser/
+
+Connect to progreeSql
+---------------------
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'labs',
+        'USER': 'postgres',
+        'PASSWORD': 'Pragma$2020',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'books.sqlite3',
+    }
+}
+
+
+PYTHON
+https://youtu.be/G2FCfQj-9ig?list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS
+DJANGO
+https://youtu.be/7XO1AzwkPPE?list=PLU8oAlHdN5BmfvwxFO7HdPciOCmmYneAB
+GIT
+https://youtu.be/HiXLkL42tMU
+
+REST YT
+-------
+https://youtu.be/2ntdfVTdt_g
+
+Curso Python desde 0
+https://www.youtube.com/playlist?list=PLU8oAlHdN5BlvPxziopYZRd55pdqFwkeS
+Django
+https://www.youtube.com/playlist?list=PLU8oAlHdN5BmfvwxFO7HdPciOCmmYneAB
+
+
+PLOTS 
+https://www.codingwithricky.com/2019/08/28/easy-django-plotly/
+love it
+https://dash-gallery.plotly.host/dash-oil-and-gas/
+
+LIB (owner)
+-----------
+https://pythonexamples.org/
+Sample:
+folder: project_lib, file randomly.py, then ... from project_lib.randomly import random_string
+
+USER SETTINGS
+-------------
+File:
+%APPDATA%\Code\User\settings.json
+
+Self editor:
+ctrl+shift+p > Preferences: Configure Language Specific Settings > Python
+
+Run Server from console (outside vscode)
+----------------------------------------
+> C:\_Study\Python\LABS_django\env\Scripts\activate
+(ecd nv)> cd ..
+(ecd nv)> cd ..
+(ecd nv)> py manage.py runserver 5000
+http://127.0.0.1:5000/
+Do not close the console
+
+tarea: GET / 9 y ver si el link es texto normal

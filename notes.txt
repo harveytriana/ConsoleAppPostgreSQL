@@ -1,13 +1,8 @@
 
+Pruebas usando una base de daos creada por Django, y sobre su Django REST Api
+-----------------------------------------------------------------------------
 
-Importante. Para que lea los objetos derivados, i.g. Bokk y su Author, es necesario
-instalar Microsoft.EntityFrameworkCore.Proxies
-
-Lazy Loading With EF Core
-https://dotnetcoretutorials.com/2019/09/07/lazy-loading-with-ef-core/
-
-If you turn on Lazy Loading, all navigation properties (e.g. Non Primitives), are required to be virtual. 
-
+Ejemplo de Ingenieria Inversa desde una base de daos PostgreSQL
 ---------------------------------------------------------------------------------------
 using System;
 using System.Linq;
@@ -15,33 +10,51 @@ using System.Linq;
  * DJANGO STRUCTURE 
  * dotnet ef dbcontext scaffold "Host=my_host;Database=my_db;Username=my_user;Password=my_pw" Npgsql.EntityFrameworkCore.PostgreSQL
  */
-namespace EscuelaPG
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello PostgreSql!");
+        Console.WriteLine("Hello PostgreSql!");
 
-            Console.WriteLine("\nREADING");
+        Console.WriteLine("\nREADING");
 
-            using var db = new LabsContext();
+        using var db = new LabsContext();
 
-            Console.WriteLine("\nALUMNOS");
-            var alumnos = db.EscuelaAlumno.ToList();
-            foreach (var i in alumnos)
-                Console.WriteLine(i);
+        Console.WriteLine("\nALUMNOS");
+        var alumnos = db.EscuelaAlumno.ToList();
+        foreach (var i in alumnos)
+            Console.WriteLine(i);
 
-            Console.WriteLine("\nCURSOS");
-            var cursos = db.EscuelaCurso.ToList();
-            foreach (var i in cursos)
-                Console.WriteLine(i);
+        Console.WriteLine("\nCURSOS");
+        var cursos = db.EscuelaCurso.ToList();
+        foreach (var i in cursos)
+            Console.WriteLine(i);
 
-            Console.WriteLine("\nMATRICULAS");
-            var matriculas = db.EscuelaMatricula.ToList();
-            foreach (var i in matriculas)
-                Console.WriteLine($"Matricula: {i}");
+        Console.WriteLine("\nMATRICULAS");
+        var matriculas = db.EscuelaMatricula.ToList();
+        foreach (var i in matriculas)
+            Console.WriteLine($"Matricula: {i}");
 
-        }
     }
 }
+
+
+Sobre .NET
+Para que lea los objetos derivados, i.g. Bokk y su Author, se puede 
+instalar Microsoft.EntityFrameworkCore.Proxies. Sin embago es más efectivo
+usae .Include() de Linq
+
+Lazy Loading With EF Core
+https://dotnetcoretutorials.com/2019/09/07/lazy-loading-with-ef-core/
+
+If you turn on Lazy Loading, all navigation properties (e.g. Non Primitives), are required to be virtual. 
+--
+
+CollegeCliente y BooksCliente son aplicaciones .NET que usan una aplicacion REST de Django.
+BooksClient se conserva como la primera aproximacion, siendo CollegeCliente más completa, con 
+todos los me´todos probados GET, POST, PUT, DELETE.
+--
+
+ConsoleAppPostgreSQL es un ejemplo de usar EF.
+--
+
