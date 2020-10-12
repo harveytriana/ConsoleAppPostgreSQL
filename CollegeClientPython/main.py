@@ -26,15 +26,24 @@ def GetBook():
 
 def CreateBook():
     print('CREATE BOOK')
+    # book = Book(id=0,
+    #             isbn='9789587231939',
+    #             author='Jorge Isaacs',
+    #             image_link='',
+    #             language='English',
+    #             link='https://bit.ly/3iNMDiY',
+    #             pages=900,
+    #             title='María',
+    #             year=1867)
     book = Book(id=0,
-                isbn='9789587231939',
-                author='Jorge Isaacs',
+                isbn='9789587231940',
+                author='Laura Restrepo',
                 image_link='',
-                language='English',
-                link='https://bit.ly/3iNMDiY',
-                pages=900,
-                title='María',
-                year=1867)
+                language='Spanish',
+                link='https://es.wikipedia.org/wiki/Delirio_(novela)',
+                pages=303,
+                title='Delirio',
+                year=2003)
     result = _rc.post_object('api/books/', book)
     if result is not None:
         print(f'Created book: {result}, id: {result.id}')
@@ -46,5 +55,5 @@ if __name__ == "__main__":
     print('\nClient of Django REST API')
     print('-------------------------')
     # GetRandomBook()
-    # GetBook()
-    CreateBook()
+    GetBook()
+    # CreateBook()

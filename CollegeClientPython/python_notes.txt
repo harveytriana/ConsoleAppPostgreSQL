@@ -122,3 +122,9 @@ Comparisons to singletons like None should always be done with is or is not, nev
 
 BookTitles
 http://127.0.0.1:5000/college/api/booktitles
+
+tarea: put, editar Marpía y cambiar a Español
+
+requests.codes list
+-------------------
+https://github.com/psf/requests/blob/master/requests/status_codes.py

@@ -20,10 +20,11 @@ class RestClient():
             # response = requests.get(url, params={'id': pk})
             #? ok
             response = requests.get(url + f'/{pk}')
-            # a jeson dictionary
-            json_dict = response.json()
-            # map to python object
-            return Book(**json_dict)
+            if response.status_code == requests.codes.OK: # 200
+                # a jeson dictionary
+                json_dict = response.json()
+                # map to python object
+                return Book(**json_dict)
         except:
             print('...Something went wrong')
             return None
@@ -33,15 +34,18 @@ class RestClient():
             url = self.api_root + route
 
             dict = json.dumps(object.__dict__)
-
-            response = requests.post(url, data=dict)
-            # a jeson dictionary
-            json_dict = response.json()
-            # map to python object
-            return Book(**json_dict)
+            headers = {'Content-type': 'application/json'}
+            
+            response = requests.post(url, data=dict, headers=headers)
+            
+            if response.status_code == requests.codes.created: # 201
+                # a json dictionary
+                json_dict = response.json()
+                # map to python object
+                return Book(**json_dict)
         except:
             print('...Something went wrong')
-            return None
+        return None
 
     def get_random_object(self, route):
         try:
@@ -53,7 +57,7 @@ class RestClient():
             return Book(**json_dict)
         except:
             print('...Something went wrong')
-            return None
+        return None
 
     def basic_sample(self):
         person_string = '{"name": "Bob", "age": 25}'

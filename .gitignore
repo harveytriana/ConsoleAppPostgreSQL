@@ -493,3 +493,4 @@ cython_debug/
 
 # note: git rm --cached .vscode/settings.json
 .vscode/settings.json
+*/.vscode/settings.json
