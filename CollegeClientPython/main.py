@@ -48,12 +48,33 @@ def CreateBook():
     if result is not None:
         print(f'Created book: {result}, id: {result.id}')
     else:
-        print(f'{book} wan not created.')
+        print(f'{book} was not created.')
+
+
+def UpdateBook():
+    print('EDIT BOOK')
+    pk = 104
+    book = Book(
+        id=pk,
+        isbn='9789587231939',
+        author='Jorge Isaacs',
+        image_link='',
+        language='Spanish',  # change
+        link='https://bit.ly/3iNMDiY',
+        pages=312,
+        title='María',
+        year=1867)
+    result = _rc.put_object('api/books/', book, pk)
+    if result:
+        print(f'Updated Book: {result}, id: {pk}')
+    else:
+        print(f'{book} was not updated..')
 
 
 if __name__ == "__main__":
     print('\nClient of Django REST API')
     print('-------------------------')
     # GetRandomBook()
-    GetBook()
+    # GetBook()
     # CreateBook()
+    UpdateBook()

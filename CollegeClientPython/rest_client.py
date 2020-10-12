@@ -27,7 +27,7 @@ class RestClient():
                 return Book(**json_dict)
         except:
             print('...Something went wrong')
-            return None
+        return None
 
     def post_object(self, route, object):
         try:
@@ -46,6 +46,21 @@ class RestClient():
         except:
             print('...Something went wrong')
         return None
+
+    def put_object(self, route, object, pk):
+        try:
+            url = self.api_root + route + str(pk) + '/'
+
+            dict = json.dumps(object.__dict__)
+            headers = {'Content-type': 'application/json'}
+            
+            response = requests.put(url, data=dict, headers=headers)
+            
+            if response.status_code == requests.codes.OK: # 200
+                return True
+        except:
+            print('...Something went wrong')
+        return False
 
     def get_random_object(self, route):
         try:

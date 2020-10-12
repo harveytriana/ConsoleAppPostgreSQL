@@ -18,9 +18,9 @@ namespace CollegeClient
 
             // GetBook();
 
-            // PostBook();
+            // CreateBook();
 
-            // PutBook();
+            UpdateBook();
 
             // DeleteBook();
 
@@ -38,32 +38,17 @@ namespace CollegeClient
 
         private static void CreateBook()
         {
-            Console.WriteLine("\nPOST BOOK");
+            Console.WriteLine("\nCREATE BOOK");
             var book = new Book
             {
-                Author = "John Lennon",
-                ISBN = "0-684-86807-5",
-                ImageLink = "https://bit.ly/2SIQALg",
-                Title = "In his On Right",
-                Language = "English",
-                Link = "https://bit.ly/3nzBjuf",
-                Pages = 200,
-                Year = 1964
-            };
-            var n = _restClient.Post("api/books/", book).Result;
-            if (n != null) {
-                Console.WriteLine($"Created, id = {n.Id}");
-            }
-        }
-
-        private static void EditBook()
-        {
-            Console.WriteLine("PUT BOOK");
-            // already exists
-            var id = 102;
-            var book = new Book
-            {
-                // Id = 102,
+                //Author = "John Lennon",
+                //ISBN = "0-684-86807-5",
+                //ImageLink = "https://bit.ly/2SIQALg",
+                //Title = "In his On Right",
+                //Language = "English",
+                //Link = "https://bit.ly/3nzBjuf",
+                //Pages = 200,
+                //Year = 1964
                 Author = "Hunter Davis",
                 Year = 2012,
                 ISBN = "0-684-86807-7",
@@ -73,9 +58,32 @@ namespace CollegeClient
                 ImageLink = "https://bit.ly/3ntrmhU",
                 Link = "http://www.beatlesradio.com/book-review-the-john-lennon-letters-by-hunter-davies",
             };
-            var updated = _restClient.Put("api/books", book, id).Result;
+            var n = _restClient.Post("api/books/", book).Result;
+            if (n != null) {
+                Console.WriteLine($"Created, id = {n.Id}");
+            }
+        }
 
-            Console.WriteLine($"Updated {id}: {updated}");
+        private static void UpdateBook()
+        {
+            Console.WriteLine("PUT BOOK");
+            // already exists
+            var pk = 106;
+            var book = new Book
+            {
+                // Id = 102,
+                Author = "Hunter Davis",
+                Year = 2012,
+                ISBN = "0-684-86807-7",
+                Language = "English",
+                Pages = 321,
+                Title = "The John Lennon Letters",
+                ImageLink = "https://bit.ly/3ntrmhU",
+                Link = "http://www.beatlesradio.com/book-review-the-john-lennon-letters-by-hunter-davies",
+            };
+            var updated = _restClient.Put("api/books", book, pk).Result;
+
+            Console.WriteLine($"Updated {pk}: {updated}");
         }
 
         // not use 'college' due to the api routed as ViewSet
