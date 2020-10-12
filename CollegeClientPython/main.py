@@ -1,6 +1,7 @@
 from rest_client import RestClient
 from models import Book
 
+# static object
 _rc = RestClient('http://127.0.0.1:5000/')
 
 
@@ -70,11 +71,22 @@ def UpdateBook():
     else:
         print(f'{book} was not updated..')
 
+def DeleteBook():
+    pk=105
+    print(f'DELETE BOOK {pk}')
+    result = _rc.delete_object('api/books', pk)
+    # display
+    if result:
+        print(f'Deleted Book: {pk}')
+    else:
+        print("None deleted.")
 
+# MAIN
 if __name__ == "__main__":
     print('\nClient of Django REST API')
     print('-------------------------')
     # GetRandomBook()
     # GetBook()
-    # CreateBook()
-    UpdateBook()
+    CreateBook()
+    # UpdateBook()
+    # DeleteBook()

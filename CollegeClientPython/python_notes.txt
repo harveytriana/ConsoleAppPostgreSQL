@@ -1,5 +1,13 @@
 This is a laboratory project.
 
+HOW TO USE AN API REST OF DJANGO 
+--------------------------------
+# looking for Requests libraty
+# https://requests.readthedocs.io/en/master/
+# https://requests.readthedocs.io/es/latest/
+
+
+
 GIT
 ---
 echo "# LABS-django" >> README.md

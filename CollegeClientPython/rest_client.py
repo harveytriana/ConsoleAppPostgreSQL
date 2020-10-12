@@ -3,13 +3,8 @@ import json
 # hard code
 from models import Book, Person
 
-# looking for Requests libraty
-# https://requests.readthedocs.io/en/master/
-# https://requests.readthedocs.io/es/latest/
-
-
 class RestClient():
-    ''' REST Samples '''
+    ''' HOW TO USE AN API REST OF DJANGO '''
     def __init__(self, api_root):
         self.api_root = api_root
 
@@ -21,7 +16,7 @@ class RestClient():
             #? ok
             response = requests.get(url + f'/{pk}')
             if response.status_code == requests.codes.OK: # 200
-                # a jeson dictionary
+                # json dictionary
                 json_dict = response.json()
                 # map to python object
                 return Book(**json_dict)
@@ -37,7 +32,6 @@ class RestClient():
             headers = {'Content-type': 'application/json'}
             
             response = requests.post(url, data=dict, headers=headers)
-            
             if response.status_code == requests.codes.created: # 201
                 # a json dictionary
                 json_dict = response.json()
@@ -55,12 +49,21 @@ class RestClient():
             headers = {'Content-type': 'application/json'}
             
             response = requests.put(url, data=dict, headers=headers)
-            
             if response.status_code == requests.codes.OK: # 200
                 return True
         except:
             print('...Something went wrong')
         return False
+
+    def delete_object(self, route, pk):
+        try:
+            url = self.api_root + route + f'/{pk}'
+            response = requests.delete(url)
+            if response.status_code == requests.codes.no_content: # 204
+                return True
+        except:
+            print('...Something went wrong')
+        return False        
 
     def get_random_object(self, route):
         try:
