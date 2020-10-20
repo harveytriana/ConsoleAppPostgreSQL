@@ -20,7 +20,7 @@ namespace CollegeClient
 
             // CreateBook();
 
-            UpdateBook();
+            // UpdateBook();
 
             // DeleteBook();
 
@@ -114,7 +114,7 @@ namespace CollegeClient
         private static void GetRandomBook()
         {
             Console.WriteLine("RANDOM BOOK");
-            var randomBook = _restClient.GetRandomObject<Book>("college/api/something").Result;
+            var randomBook = _restClient.GetRandomObject<Book>("college/api/random_book").Result;
             if (randomBook != null)
                 Console.WriteLine($"{randomBook.Id}; {randomBook}");
             else

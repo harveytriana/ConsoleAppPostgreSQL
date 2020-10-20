@@ -7,7 +7,7 @@ _rc = RestClient('http://127.0.0.1:5000/')
 
 def GetRandomBook():
     print('GET RANDOM BOOK')
-    book = _rc.get_random_object('college/api/something')
+    book = _rc.get_random_object('college/api/random_book')
     # display
     if book is not None:
         print(f'Mapped Book: {book} | {book.link}')
