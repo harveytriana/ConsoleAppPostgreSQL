@@ -27,7 +27,7 @@ namespace CollegeClient
         }
     }
 
-    public partial class AcademicCourse
+    public partial class Course
     {
         [JsonProperty("id")]
         public int Id { get; set; }

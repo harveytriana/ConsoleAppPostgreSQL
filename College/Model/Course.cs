@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace College
 {
-    public partial class AcademicCourse
+    public partial class Course
     {
-        public AcademicCourse()
+        public Course()
         {
             CollegeEnrollment = new HashSet<Enrollment>();
         }
@@ -13,7 +13,7 @@ namespace College
         public long Id { get; set; }
         public string Name { get; set; }
         public long Credits { get; set; }
-        public byte[] State { get; set; }
+        public bool State { get; set; }
 
         public virtual ICollection<Enrollment> CollegeEnrollment { get; set; }
 

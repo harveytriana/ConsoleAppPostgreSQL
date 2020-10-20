@@ -21,7 +21,7 @@ namespace College
         public virtual DbSet<AuthUser> AuthUser { get; set; }
         public virtual DbSet<AuthUserGroups> AuthUserGroups { get; set; }
         public virtual DbSet<AuthUserUserPermissions> AuthUserUserPermissions { get; set; }
-        public virtual DbSet<AcademicCourse> CollegeAcademiccourse { get; set; }
+        public virtual DbSet<Course> CollegeAcademiccourse { get; set; }
         public virtual DbSet<Enrollment> CollegeEnrollment { get; set; }
         public virtual DbSet<Student> CollegeStudent { get; set; }
         public virtual DbSet<DjangoAdminLog> DjangoAdminLog { get; set; }
@@ -255,9 +255,9 @@ namespace College
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
-            modelBuilder.Entity<AcademicCourse>(entity =>
+            modelBuilder.Entity<Course>(entity =>
             {
-                entity.ToTable("college_academiccourse");
+                entity.ToTable("college_course");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
